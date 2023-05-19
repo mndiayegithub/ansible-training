@@ -1,0 +1,6 @@
+---
+# tasks file for molecule
+- name: "Create file.txt"
+  copy:
+    content: "This is my file"
+    dest: /home/vagrant/file.txt

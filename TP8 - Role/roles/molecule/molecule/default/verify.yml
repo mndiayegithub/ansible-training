@@ -1,0 +1,20 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: localhost
+  gather_facts: false
+  vars:
+    - ansible_connection: local
+  tasks:
+  - name: "stat /file.txt exists"
+    stat:
+      path: /home/vagrant/file.txt
+    register: file_txt_stat
+    
+  - name: Check if file exists
+    assert:
+      that:
+        - file_txt_stat.stat.exists == True
+      success_msg: "/file.txt exists"
+      fail_msg: "/file.txt doesn't exist"
